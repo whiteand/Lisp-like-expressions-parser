@@ -65,9 +65,6 @@ func ParseAdd(text []rune) (expr AddExpr, size int) {
 	return AddExpr{firstExpr, secondExpr}, firstLen + secondLen + 5 + 1 + 1 // 5 <- prefix='(add ', 1 <- suffix=')' 1 - for space between arguments
 }
 func ParseMult(text []rune) (expr MultExpr, size int) {
-	defer func() {
-		fmt.Printf("%s -> %d\n", string(text), size)
-	}()
 	startFirstExpr := text[6:] // Start after suffix ='(mult'
 	firstExpr, firstLen := Parse(startFirstExpr)
 	startSecondExpr := startFirstExpr[firstLen+1:] // +1 for space between
